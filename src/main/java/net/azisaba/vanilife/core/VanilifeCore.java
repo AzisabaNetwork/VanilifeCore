@@ -2,6 +2,7 @@ package net.azisaba.vanilife.core;
 
 import net.azisaba.vanilife.core.commands.VanilifeCommand;
 import net.azisaba.vanilife.core.listeners.NotifyAdminListener;
+import net.azisaba.vanilife.core.listeners.Toto31010;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -21,6 +22,7 @@ public class VanilifeCore extends JavaPlugin {
     public void onEnable() {
         reload();
         Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
+        Bukkit.getPluginManager().registerEvents(new Toto31010(), this);
         Objects.requireNonNull(Bukkit.getPluginCommand("vanilife")).setExecutor(new VanilifeCommand(this));
     }
 
