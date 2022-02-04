@@ -22,7 +22,7 @@ public class VanilifeCore extends JavaPlugin {
     public void onEnable() {
         reload();
         Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new Toto31010(), this);
+        Bukkit.getPluginManager().registerEvents(new Toto31010(this), this);
         Objects.requireNonNull(Bukkit.getPluginCommand("vanilife")).setExecutor(new VanilifeCommand(this));
     }
 
