@@ -5,13 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-public class Toto31010 implements Listener {
-    private final VanilifeCore plugin;
-
-    public Toto31010(VanilifeCore plugin) {
-        this.plugin = plugin;
-    }
-
+public record Toto31010(VanilifeCore plugin) implements Listener {
     @EventHandler
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
         if (plugin.getConfig().getBoolean("no-toto31010", true)) return;

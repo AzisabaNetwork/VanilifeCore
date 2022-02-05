@@ -3,15 +3,20 @@ plugins {
 }
 
 group = "net.azisaba.vanilife"
-version = "1.0.1"
+version = "1.1.0"
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://papermc.io/repo/repository/maven-public/") }
     maven { url = uri("https://hub.spigotmc.org/nexus/content/groups/public/") }
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.18.1-R0.1-SNAPSHOT")
     compileOnly("org.jetbrains:annotations:23.0.0")
 }
 

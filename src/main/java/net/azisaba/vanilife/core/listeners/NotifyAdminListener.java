@@ -9,13 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.io.IOException;
 
-public class NotifyAdminListener implements Listener {
-    private final VanilifeCore plugin;
-
-    public NotifyAdminListener(VanilifeCore plugin) {
-        this.plugin = plugin;
-    }
-
+public record NotifyAdminListener(VanilifeCore plugin) implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
         if (e.getMessage().startsWith("/")) return;

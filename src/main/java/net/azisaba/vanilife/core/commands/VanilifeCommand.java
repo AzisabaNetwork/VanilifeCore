@@ -9,7 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,13 +19,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class VanilifeCommand implements TabExecutor {
+public record VanilifeCommand(VanilifeCore plugin) implements TabExecutor {
     private static final List<String> COMMANDS = Arrays.asList("block", "unblock", "reload");
-    private final VanilifeCore plugin;
-
-    public VanilifeCommand(VanilifeCore plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -67,7 +61,6 @@ public class VanilifeCommand implements TabExecutor {
         return true;
     }
 
-    @Nullable
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if (args.length == 0) return Collections.emptyList();

@@ -1,5 +1,6 @@
 package net.azisaba.vanilife.core;
 
+import net.azisaba.vanilife.core.commands.ToggleAdminCommand;
 import net.azisaba.vanilife.core.commands.VanilifeCommand;
 import net.azisaba.vanilife.core.listeners.NotifyAdminListener;
 import net.azisaba.vanilife.core.listeners.Toto31010;
@@ -23,6 +24,7 @@ public class VanilifeCore extends JavaPlugin {
         reload();
         Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
         Bukkit.getPluginManager().registerEvents(new Toto31010(this), this);
+        Objects.requireNonNull(Bukkit.getPluginCommand("toggleadmin")).setExecutor(new ToggleAdminCommand(this));
         Objects.requireNonNull(Bukkit.getPluginCommand("vanilife")).setExecutor(new VanilifeCommand(this));
     }
 

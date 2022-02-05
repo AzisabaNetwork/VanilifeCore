@@ -2,5 +2,7 @@ name: VanilifeCore
 main: net.azisaba.vanilife.core.VanilifeCore
 version: @VERSION@
 commands:
+  toggleadmin:
+    permission: vanilifecore.toggleadmin
   vanilife:
-    permission: vanilifecore.command
+    permission: vanilifecore.vanilife

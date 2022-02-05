@@ -4,7 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -99,6 +104,36 @@ public class Util {
             String s;
             while ((s = reader.readLine()) != null) builder.append(s);
             return builder.toString();
+        }
+    }
+
+    public static String encodeBase64(byte[] bytes) {
+        return Base64.getEncoder().encodeToString(bytes);
+    }
+
+    public static byte[] decodeBase64(String encodedString) {
+        return Base64.getDecoder().decode(encodedString);
+    }
+
+    public static void serialize(FileConfiguration config, String prefix, Inventory from) {
+        for (int i = 0; i < from.getSize(); i++) {
+            String encoded = null;
+            ItemStack item = from.getItem(i);
+            if (item != null) {
+                encoded = encodeBase64(item.serializeAsBytes());
+            }
+            config.set(prefix + ".inventory.slot" + i, encoded);
+        }
+    }
+
+    public static void deserialize(FileConfiguration config, String prefix, Inventory to) {
+        for (int i = 0; i < to.getSize(); i++) {
+            String encoded = config.getString(prefix + ".inventory.slot" + i);
+            if (encoded == null) {
+                to.setItem(i, null);
+            } else {
+                to.setItem(i, ItemStack.deserializeBytes(decodeBase64(encoded)));
+            }
         }
     }
 }
