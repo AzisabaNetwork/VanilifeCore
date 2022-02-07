@@ -6,3 +6,5 @@ commands:
     permission: vanilifecore.toggleadmin
   vanilife:
     permission: vanilifecore.vanilife
+  book:
+    description: 本を入手
