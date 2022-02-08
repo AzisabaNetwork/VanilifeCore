@@ -11,11 +11,9 @@ public class BookCommand implements CommandExecutor {
 
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, String[] args) {
-    if(!(sender instanceof Player player)) return true;
-    if(command.getName().equals("book")) {
-      player.getInventory().addItem(VaniLifeBook.vanlifeBook);
-      player.sendMessage("本をあなたのインベントリに入れました。");
-    }
+    if (!(sender instanceof Player player)) return true;
+    player.getInventory().addItem(VaniLifeBook.vanlifeBook);
+    player.sendMessage("本をあなたのインベントリに入れました。");
     return true;
   }
 }
