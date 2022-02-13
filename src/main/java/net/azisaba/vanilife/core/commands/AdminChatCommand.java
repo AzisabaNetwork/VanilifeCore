@@ -29,7 +29,7 @@ public record AdminChatCommand(VanilifeCore plugin) implements TabExecutor {
       }
       return true;
     }
-    String message = String.join("", args);
+    String message = String.join(" ", args);
     plugin.getAdminChatUtil().handleAdminChat(sender, message);
     return true;
   }
