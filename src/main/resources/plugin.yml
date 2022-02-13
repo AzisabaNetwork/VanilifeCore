@@ -8,3 +8,5 @@ commands:
     permission: vanilifecore.vanilife
   book:
     description: 本を入手
+  damagenearby:
+    permission: vanilifecore.damagenearby

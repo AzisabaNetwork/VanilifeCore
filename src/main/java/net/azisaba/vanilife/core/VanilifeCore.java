@@ -1,6 +1,7 @@
 package net.azisaba.vanilife.core;
 
 import net.azisaba.vanilife.core.commands.BookCommand;
+import net.azisaba.vanilife.core.commands.DamageNearbyCommand;
 import net.azisaba.vanilife.core.commands.ToggleAdminCommand;
 import net.azisaba.vanilife.core.commands.VanilifeCommand;
 import net.azisaba.vanilife.core.listeners.FirstPlayerJoinListener;
@@ -18,47 +19,48 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class VanilifeCore extends JavaPlugin {
-    private final Set<UUID> blockList = new HashSet<>();
-    private String adminNotifyURL = null;
+  private final Set<UUID> blockList = new HashSet<>();
+  private String adminNotifyURL = null;
 
-    @Override
-    public void onEnable() {
-        reload();
-        Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
-        Bukkit.getPluginManager().registerEvents(new Toto31010(this), this);
-        Bukkit.getPluginManager().registerEvents(new FirstPlayerJoinListener(this), this);
-        Objects.requireNonNull(Bukkit.getPluginCommand("toggleadmin")).setExecutor(new ToggleAdminCommand(this));
-        Objects.requireNonNull(Bukkit.getPluginCommand("vanilife")).setExecutor(new VanilifeCommand(this));
-        Objects.requireNonNull(Bukkit.getPluginCommand("book")).setExecutor(new BookCommand());
-    }
+  @Override
+  public void onEnable() {
+    reload();
+    Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
+    Bukkit.getPluginManager().registerEvents(new Toto31010(this), this);
+    Bukkit.getPluginManager().registerEvents(new FirstPlayerJoinListener(this), this);
+    Objects.requireNonNull(Bukkit.getPluginCommand("toggleadmin")).setExecutor(new ToggleAdminCommand(this));
+    Objects.requireNonNull(Bukkit.getPluginCommand("vanilife")).setExecutor(new VanilifeCommand(this));
+    Objects.requireNonNull(Bukkit.getPluginCommand("book")).setExecutor(new BookCommand());
+    Objects.requireNonNull(Bukkit.getPluginCommand("damagenearby")).setExecutor(new DamageNearbyCommand(this));
+  }
 
-    public void reload() {
-        blockList.clear();
-        reloadConfig();
-        for (String s : getConfig().getStringList("blockList")) {
-            try {
-                blockList.add(UUID.fromString(s));
-            } catch (IllegalArgumentException e) {
-                getLogger().warning("Failed to parse blockList " + s);
-                e.printStackTrace();
-            }
-        }
-        adminNotifyURL = getConfig().getString("adminNotifyURL");
+  public void reload() {
+    blockList.clear();
+    reloadConfig();
+    for (String s : getConfig().getStringList("blockList")) {
+      try {
+        blockList.add(UUID.fromString(s));
+      } catch (IllegalArgumentException e) {
+        getLogger().warning("Failed to parse blockList " + s);
+        e.printStackTrace();
+      }
     }
+    adminNotifyURL = getConfig().getString("adminNotifyURL");
+  }
 
-    public void save() {
-        getConfig().set("blockList", blockList.stream().map(UUID::toString).collect(Collectors.toList()));
-        getConfig().set("adminNotifyURL", adminNotifyURL);
-        saveConfig();
-    }
+  public void save() {
+    getConfig().set("blockList", blockList.stream().map(UUID::toString).collect(Collectors.toList()));
+    getConfig().set("adminNotifyURL", adminNotifyURL);
+    saveConfig();
+  }
 
-    @NotNull
-    public Set<UUID> getBlockList() {
-        return blockList;
-    }
+  @NotNull
+  public Set<UUID> getBlockList() {
+    return blockList;
+  }
 
-    @Nullable
-    public String getAdminNotifyURL() {
-        return adminNotifyURL;
-    }
+  @Nullable
+  public String getAdminNotifyURL() {
+    return adminNotifyURL;
+  }
 }

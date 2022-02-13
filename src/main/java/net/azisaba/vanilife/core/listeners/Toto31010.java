@@ -6,11 +6,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 public record Toto31010(VanilifeCore plugin) implements Listener {
-    @EventHandler
-    public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
-        if (plugin.getConfig().getBoolean("no-toto31010", true)) return;
-        if (plugin.getConfig().getBoolean("toto31010", false) || e.getPlayer().getUniqueId().toString().equals("1865ab8c-700b-478b-9b52-a8c58739df1a")) {
-            e.setMessage(e.getMessage() + "///");
-        }
+  @EventHandler
+  public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
+    if (plugin.getConfig().getBoolean("no-toto31010", true)) return;
+    if (plugin.getConfig().getBoolean("toto31010", false) || e.getPlayer().getUniqueId().toString().equals("1865ab8c-700b-478b-9b52-a8c58739df1a")) {
+      e.setMessage(e.getMessage() + "///");
     }
+  }
 }
