@@ -10,3 +10,18 @@ commands:
     description: 本を入手
   damagenearby:
     permission: vanilifecore.damagenearby
+  adminchat:
+    permission: vanilifecore.adminchat
+permissions:
+  vanilifecore.toggleadmin:
+    default: false
+  vanilifecore.vanilife:
+    default: false
+  vanilifecore.damagenearby:
+    default: false
+  vanilifecore.adminchat:
+    default: false
+    children:
+      - vanilifecore.adminchat.listen
+  vanilifecore.adminchat.listen:
+    default: false

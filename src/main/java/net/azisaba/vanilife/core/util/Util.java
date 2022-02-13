@@ -5,24 +5,24 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -96,17 +96,6 @@ public class Util {
     }
   }
 
-  @NotNull
-  public static String readStringThenClose(@NotNull InputStream in) throws IOException {
-    try (InputStreamReader inputStreamReader = new InputStreamReader(in);
-         BufferedReader reader = new BufferedReader(inputStreamReader)) {
-      StringBuilder builder = new StringBuilder();
-      String s;
-      while ((s = reader.readLine()) != null) builder.append(s);
-      return builder.toString();
-    }
-  }
-
   public static String encodeBase64(byte[] bytes) {
     return Base64.getEncoder().encodeToString(bytes);
   }
@@ -135,5 +124,28 @@ public class Util {
         to.setItem(i, ItemStack.deserializeBytes(decodeBase64(encoded)));
       }
     }
+  }
+
+  @NotNull
+  public static <K, V> Map.Entry<K, V> entry(K k, V v) {
+    return new AbstractMap.SimpleImmutableEntry<>(k, v);
+  }
+
+  @SafeVarargs
+  public static <K, V> @NotNull Map<K, V> mapOf(Map.Entry<K, V>... entries) {
+    Map<K, V> map = new HashMap<>();
+    for (Map.Entry<K, V> entry : entries) {
+      map.put(entry.getKey(), entry.getValue());
+    }
+    return map;
+  }
+
+  @NotNull
+  public static String replaceByMap(@NotNull String s, @NotNull Map<String, ?> map) {
+    AtomicReference<String> string = new AtomicReference<>(s);
+    map.forEach((k, v) -> {
+      string.set(string.get().replace(k, String.valueOf(v)));
+    });
+    return string.get();
   }
 }
