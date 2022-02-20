@@ -16,12 +16,12 @@ public record FirstPlayerJoinListener(VanilifeCore plugin) implements Listener {
   @EventHandler
   public void onFirstPlayerJoin(PlayerJoinEvent e) {
     Player p = e.getPlayer();
-    ChatColor yellow = ChatColor.YELLOW;
+    ChatColor green = ChatColor.GREEN;
 
     if (p.hasPlayedBefore()) return;
 
     String[] toJoinPlayerMessage = {
-        yellow +
+        green +
             """
             ばにらいふへようこそ！
             ここでは難しいコマンドなどが一切ない、純粋な『バニラサバイバルのマイクラ』を楽しむことができます。

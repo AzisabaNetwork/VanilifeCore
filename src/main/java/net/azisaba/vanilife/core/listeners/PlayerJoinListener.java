@@ -13,9 +13,9 @@ public record PlayerJoinListener(VanilifeCore plugin) implements Listener {
   public void onJoin(PlayerJoinEvent e) {
     Player p = e.getPlayer();
 
-    ChatColor yellow = ChatColor.YELLOW;
+    ChatColor green = ChatColor.GREEN;
     String[] toJoinPlayerMessage = {
-        yellow +
+        green +
             """
             ばにらいふへようこそ！
             ルール: https://www.azisaba.net/server-intro/vanilife/
