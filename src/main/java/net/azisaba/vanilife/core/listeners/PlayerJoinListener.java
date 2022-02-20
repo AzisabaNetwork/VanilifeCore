@@ -13,6 +13,9 @@ public record PlayerJoinListener(VanilifeCore plugin) implements Listener {
   public void onJoin(PlayerJoinEvent e) {
     Player p = e.getPlayer();
 
+    // 新規はこれを表示しない
+    if (!p.hasPlayedBefore()) return;
+
     ChatColor green = ChatColor.GREEN;
     String[] toJoinPlayerMessage = {
         green +
