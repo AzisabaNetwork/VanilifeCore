@@ -9,6 +9,7 @@ import net.azisaba.vanilife.core.listeners.AdminChatListener;
 import net.azisaba.vanilife.core.listeners.FirstPlayerJoinListener;
 import net.azisaba.vanilife.core.listeners.NotifyAdminListener;
 import net.azisaba.vanilife.core.listeners.NotifyOnJoinListener;
+import net.azisaba.vanilife.core.listeners.PlayerJoinListener;
 import net.azisaba.vanilife.core.listeners.Toto31010;
 import net.azisaba.vanilife.core.util.AdminChatUtil;
 import org.bukkit.Bukkit;
@@ -37,6 +38,7 @@ public class VanilifeCore extends JavaPlugin {
     save();
     Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
     Bukkit.getPluginManager().registerEvents(new Toto31010(this), this);
+    Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
     Bukkit.getPluginManager().registerEvents(new FirstPlayerJoinListener(this), this);
     Bukkit.getPluginManager().registerEvents(new AdminChatListener(this), this);
     Bukkit.getPluginManager().registerEvents(new NotifyOnJoinListener(this), this);
