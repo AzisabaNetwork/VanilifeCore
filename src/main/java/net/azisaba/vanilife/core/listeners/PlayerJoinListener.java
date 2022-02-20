@@ -1,6 +1,5 @@
 package net.azisaba.vanilife.core.listeners;
 
-import net.azisaba.vanilife.core.VanilifeCore;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

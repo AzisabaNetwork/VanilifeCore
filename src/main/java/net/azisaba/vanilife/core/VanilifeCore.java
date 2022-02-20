@@ -38,7 +38,7 @@ public class VanilifeCore extends JavaPlugin {
     save();
     Bukkit.getPluginManager().registerEvents(new NotifyAdminListener(this), this);
     Bukkit.getPluginManager().registerEvents(new Toto31010(this), this);
-    Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+    Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(), this);
     Bukkit.getPluginManager().registerEvents(new FirstPlayerJoinListener(this), this);
     Bukkit.getPluginManager().registerEvents(new AdminChatListener(this), this);
     Bukkit.getPluginManager().registerEvents(new NotifyOnJoinListener(this), this);
