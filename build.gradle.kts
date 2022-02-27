@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "net.azisaba.vanilife"
-version = "1.3.0"
+version = "1.4.0"
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
