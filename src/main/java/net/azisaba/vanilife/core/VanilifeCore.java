@@ -62,12 +62,14 @@ public class VanilifeCore extends JavaPlugin {
       }
     }
     adminNotifyURL = getConfig().getString("adminNotifyURL");
+    firstJoinNotifyURL = getConfig().getString("firstJoinNotifyURL");
     adminChatFormat = getConfig().getString("adminChatFormat", DEFAULT_ADMIN_CHAT_FORMAT);
   }
 
   public void save() {
     getConfig().set("blockList", blockList.stream().map(UUID::toString).collect(Collectors.toList()));
     getConfig().set("adminNotifyURL", adminNotifyURL);
+    getConfig().set("firstJoinNotifyURL", firstJoinNotifyURL);
     getConfig().set("adminChatFormat", adminChatFormat);
     saveConfig();
   }
