@@ -28,6 +28,7 @@ public class VanilifeCore extends JavaPlugin {
   private final Set<UUID> blockList = new HashSet<>();
   private final AdminChatUtil adminChatUtil = new AdminChatUtil(this);
   private String adminNotifyURL = null;
+  private String firstJoinNotifyURL = null;
   // %SENDER_NAME% - the name of the sender
   // %MESSAGE% - the message
   private String adminChatFormat = DEFAULT_ADMIN_CHAT_FORMAT;
@@ -84,6 +85,11 @@ public class VanilifeCore extends JavaPlugin {
   @Nullable
   public String getAdminNotifyURL() {
     return adminNotifyURL;
+  }
+
+  @Nullable
+  public String getFirstJoinNotifyURL() {
+    return firstJoinNotifyURL;
   }
 
   @NotNull

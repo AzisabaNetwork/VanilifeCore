@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -43,9 +42,8 @@ public class Util {
     return merge(list.collect(Collectors.toList()), another.collect(Collectors.toList())).stream();
   }
 
-  public static void sendDiscordWebhook(@NotNull String url, @Nullable Player player, @NotNull Supplier<@Nullable String> contentSupplier) throws IOException {
-    String content = contentSupplier.get();
-    if (content == null || content.isEmpty()) return;
+  public static void sendDiscordWebhook(@Nullable String url, @Nullable Player player, @Nullable String content) throws IOException {
+    if (url == null) return;
     HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
     try {
       connection.addRequestProperty("Accept", "application/json");
@@ -75,10 +73,12 @@ public class Util {
         field.addProperty("value", loc.getBlockX() + ", " + loc.getBlockY() + ", " + loc.getBlockZ());
         fields.add(field);
       }
-      JsonObject contentField = new JsonObject();
-      contentField.addProperty("name", "内容");
-      contentField.addProperty("value", content);
-      fields.add(contentField);
+      if (content != null && !content.isEmpty()) {
+        JsonObject contentField = new JsonObject();
+        contentField.addProperty("name", "内容");
+        contentField.addProperty("value", content);
+        fields.add(contentField);
+      }
       JsonArray embeds = new JsonArray();
       JsonObject embed = new JsonObject();
       embed.add("fields", fields);
