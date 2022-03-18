@@ -1,6 +1,7 @@
 package net.azisaba.vanilife.core.listeners;
 
 import net.azisaba.vanilife.core.VanilifeCore;
+import net.azisaba.vanilife.core.util.Util;
 import net.azisaba.vanilife.core.util.VaniLifeBook;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -11,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+
+import java.io.IOException;
 
 public record FirstPlayerJoinListener(VanilifeCore plugin) implements Listener {
   @EventHandler
@@ -42,5 +45,15 @@ public record FirstPlayerJoinListener(VanilifeCore plugin) implements Listener {
 
     // 最初のばにらいふ!メッセージを送信
     p.sendMessage(toJoinPlayerMessage);
+
+    // Webhookを送る
+    new Thread(() -> {
+      try {
+        Util.sendDiscordWebhook(plugin.getFirstJoinNotifyURL(), e.getPlayer(), null);
+      } catch (IOException ex) {
+        plugin.getLogger().warning("Failed to send webhook");
+        ex.printStackTrace();
+      }
+    }, "FirstPlayerJoinListener-Webhook-Client").start();
   }
 }

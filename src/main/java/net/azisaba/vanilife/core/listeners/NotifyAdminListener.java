@@ -17,7 +17,7 @@ public record NotifyAdminListener(VanilifeCore plugin) implements Listener {
       if (plugin.getBlockList().contains(e.getPlayer().getUniqueId())) return;
       new Thread(() -> {
         try {
-          Util.sendDiscordWebhook(plugin.getAdminNotifyURL(), e.getPlayer(), e::getMessage);
+          Util.sendDiscordWebhook(plugin.getAdminNotifyURL(), e.getPlayer(), e.getMessage());
         } catch (IOException ex) {
           plugin.getLogger().warning("Failed to send webhook");
           ex.printStackTrace();
