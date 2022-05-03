@@ -1,6 +1,7 @@
 package net.azisaba.vanilife.core.util;
 
-import org.bukkit.ChatColor;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
@@ -34,7 +35,7 @@ public record VaniLifeBook(JavaPlugin plugin) {
         """,
     };
     meta.setTitle("Blank");
-    meta.setDisplayName(ChatColor.LIGHT_PURPLE + "ばにらいふ!について" + ChatColor.YELLOW + " - Ver2");
+    meta.displayName(Component.text("ばにらいふ!について").color(NamedTextColor.LIGHT_PURPLE));
     meta.addPage(page);
     meta.setAuthor("ばにらいふ!運営");
     vanlifeBook.setItemMeta(meta);
