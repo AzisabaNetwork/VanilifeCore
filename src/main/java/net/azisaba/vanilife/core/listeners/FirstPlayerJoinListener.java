@@ -31,7 +31,7 @@ public record FirstPlayerJoinListener(VanilifeCore plugin) implements Listener {
             マルチサーバーに来たばかりの初心者さんでも遊びやすい簡単かつシンプルさを追求したシステムです。
             ルールを確認したら、ばにらいふを楽しみましょう！
             
-            https://wiki.azisaba.net/wiki/
+            https://wiki.azisaba.net/
             (Java版はURLをクリック、BEはGoogle等でアジ鯖の公式ホームページからご確認いただけます。)
             """
     };
