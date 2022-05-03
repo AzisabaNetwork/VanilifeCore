@@ -7,7 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public record VaniLifeBook(JavaPlugin plugin) {
 
@@ -36,9 +38,12 @@ public record VaniLifeBook(JavaPlugin plugin) {
         https://www.azisaba.net/server-intro/vanilife#rules
         """,
     };
+    List<Component> lores = new ArrayList<>();
+    lores.add(Component.text("バージョン 2.5"));
     meta.setTitle("Blank");
     meta.displayName(Component.text("ばにらいふ!について").color(NamedTextColor.LIGHT_PURPLE));
-    Arrays.stream(pages).map(Component::text).toList().toArray(new Component[0]);
+    meta.addPages(Arrays.stream(pages).map(Component::text).toList().toArray(new Component[0]));
+    meta.lore(lores);
     meta.setAuthor("ばにらいふ!運営");
     vanlifeBook.setItemMeta(meta);
   }
