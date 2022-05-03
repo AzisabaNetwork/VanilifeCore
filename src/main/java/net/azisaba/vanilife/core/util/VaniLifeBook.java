@@ -41,7 +41,7 @@ public record VaniLifeBook(JavaPlugin plugin) {
     List<Component> lores = new ArrayList<>();
     lores.add(Component.text("バージョン 2.5"));
     meta.setTitle("Blank");
-    meta.displayName(Component.text("ばにらいふ!について").color(NamedTextColor.LIGHT_PURPLE));
+    meta.displayName(Component.text("ばにらいふ!について", NamedTextColor.LIGHT_PURPLE));
     meta.addPages(Arrays.stream(pages).map(Component::text).toList().toArray(new Component[0]));
     meta.lore(lores);
     meta.setAuthor("ばにらいふ!運営");
