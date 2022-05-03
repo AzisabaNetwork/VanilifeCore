@@ -7,13 +7,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+
 public record VaniLifeBook(JavaPlugin plugin) {
 
   public static final ItemStack vanlifeBook = new ItemStack(Material.WRITTEN_BOOK);
 
   static {
     BookMeta meta = (BookMeta) vanlifeBook.getItemMeta();
-    String[] page = {
+    String[] pages = {
         // 1 Page
         """
         ～ ばにらいふ! 仕様書 ～
@@ -36,7 +38,7 @@ public record VaniLifeBook(JavaPlugin plugin) {
     };
     meta.setTitle("Blank");
     meta.displayName(Component.text("ばにらいふ!について").color(NamedTextColor.LIGHT_PURPLE));
-    meta.addPage(page);
+    Arrays.stream(pages).map(Component::text).toList().toArray(new Component[0]);
     meta.setAuthor("ばにらいふ!運営");
     vanlifeBook.setItemMeta(meta);
   }
