@@ -15,6 +15,9 @@ public class PlayerJoinListener implements Listener {
     // 新規はこれを表示しない
     if (!p.hasPlayedBefore()) return;
 
+    // 死亡している場合はリスポーン
+    p.spigot().respawn();
+
     ChatColor green = ChatColor.GREEN;
     String[] toJoinPlayerMessage = {
         green +
