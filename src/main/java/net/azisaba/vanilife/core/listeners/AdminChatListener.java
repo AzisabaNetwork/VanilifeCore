@@ -11,7 +11,7 @@ public record AdminChatListener(VanilifeCore plugin) implements Listener {
   @EventHandler
   public void onAsyncChat(AsyncChatEvent e) {
     if (plugin.getAdminChatUtil().isAdminChatEnabled(e.getPlayer())) {
-      if(e.message().toString().startsWith("!")) {
+      if (PlainTextComponentSerializer.plainText().serialize(e.message()).startsWith("!")) {
         return;
       }
 
