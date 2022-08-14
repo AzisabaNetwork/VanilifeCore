@@ -3,6 +3,7 @@ package net.azisaba.vanilife.core.listeners;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.azisaba.vanilife.core.VanilifeCore;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
