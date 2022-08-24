@@ -12,10 +12,13 @@ public record AdminChatListener(VanilifeCore plugin) implements Listener {
   @EventHandler
   public void onAsyncChat(AsyncChatEvent e) {
     if (plugin.getAdminChatUtil().isAdminChatEnabled(e.getPlayer())) {
-      if (PlainTextComponentSerializer.plainText().serialize(e.message()).startsWith("!")) {
+      var plainMessage = PlainTextComponentSerializer.plainText().serialize(e.message());
+      if (plainMessage.startsWith("!")) {
+        //先頭の「!」をなくす
+        var messageRemovedMark = plainMessage.substring(1);
+        e.message(PlainTextComponentSerializer.plainText().deserialize(messageRemovedMark));
         return;
       }
-
       e.setCancelled(true);
       String messageAsString = LegacyComponentSerializer.legacySection().serialize(e.message());
       Bukkit.getScheduler().runTask(plugin, () -> plugin.getAdminChatUtil().handleAdminChat(
